@@ -59,3 +59,9 @@ if(BUILD_PYTHON)
     DESTINATION .)
 
 endif()
+
+# Build tests with catch2
+if (BUILD_TESTS)
+  enable_testing()
+  add_subdirectory("test")
+endif()

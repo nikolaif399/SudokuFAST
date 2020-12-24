@@ -24,6 +24,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 typedef std::vector<std::vector<int>> board_t;
 
@@ -32,3 +33,11 @@ bool load_board_from_file(std::string filename, board_t &board);
 void print_board(board_t board);
 
 std::vector<int> flatten_board(board_t board);
+
+board_t create_sudoku_board(int N2);
+
+bool verify_valid_set(std::vector<int> in);
+
+bool verify_sudoku_board(board_t in, bool use_diag);
+
+
