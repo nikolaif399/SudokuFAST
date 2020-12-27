@@ -68,10 +68,8 @@ int main(int argc,char** argv) {
   int N2 = sudoku_size*sudoku_size;
   board.resize(N2,std::vector<int>(N2,0)); 
 
-  std::cout << board.size() << std::endl;
-  std::cout << board[0].size() << std::endl;
-
   if (!load_board_from_file(sudoku_file,board)) {
+    std::cerr << "Couldn't load board from file " << sudoku_file.c_str() << std::endl;
     return 1;
   }
 

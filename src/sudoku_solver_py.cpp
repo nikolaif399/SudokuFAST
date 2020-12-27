@@ -30,24 +30,7 @@
 #include <vector>
 #include <chrono>
 
-std::vector<double> length(const std::vector<double>& pos)
-{
-  size_t N = pos.size() / 2;
-
-  std::vector<double> output(N*3);
-
-  for ( size_t i = 0 ; i < N ; ++i ) {
-    output[i*3+0] = pos[i*2+0];
-    output[i*3+1] = pos[i*2+1];
-    output[i*3+2] = std::pow(pos[i*2+0]*pos[i*2+1],.5);
-  }
-
-  return output;
-}
-
 namespace py = pybind11;
-
-
 
 std::tuple<py::array,bool> py_solve_sudoku(py::array_t<int> arr, bool sudokuX)
 {
