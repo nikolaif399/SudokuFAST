@@ -1,0 +1,23 @@
+language: c++
+
+branches:
+  only:
+  - main
+
+os:
+  - osx
+  - linux
+
+compiler:
+  - g++
+  - clang
+
+addons:
+  homebrew:
+    packages: 
+    - boost
+    update: true
+  apt:
+    packages:
+    - boost
+    update: true
