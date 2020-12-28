@@ -17,6 +17,10 @@ addons:
     - boost
     update: false
 
+env:
+  - BUILD_PYTHON=ON
+  - BUILD_PYTHON=OFF
+
 jobs:
   include:
     - os: linux
@@ -25,15 +29,7 @@ jobs:
     - os: osx
       dist: xcode11.2
 
-env:
-  global:
-  - CI_SOURCE_PATH=$(pwd)
-  jobs:
-  - BUILD_PYTHON=ON
-  - BUILD_PYTHON=OFF
-
 before_script:
-  - ln -s $CI_SOURCE_PATH ~/
   - cd $TRAVIS_BUILD_DIR
   - mkdir build && cd build
 
