@@ -4,20 +4,39 @@ branches:
   only:
   - main
 
-os:
-  - osx
-  - linux
-
 compiler:
   - g++
-  - clang
 
 addons:
   homebrew:
     packages: 
     - boost
-    update: true
+    update: false
   apt:
     packages:
     - boost
-    update: true
+    update: false
+
+matrix:
+  include:
+    - os: linux
+      dist: bionic
+
+    - os: osx
+      dist: xcode11.2
+
+env:
+  - BUILD_PYTHON=ON
+  - BUILD_PYTHON=OFF
+  global:
+  - CI_SOURCE_PATH=$(pwd)
+
+before_script:
+  - ln -s $CI_SOURCE_PATH ~/
+  - cd $TRAVIS_BUILD_DIR
+  - mkdir build && cd build
+
+script:
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
+  - make -j4
+  - ctest -v
