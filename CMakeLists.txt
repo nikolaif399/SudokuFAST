@@ -45,10 +45,11 @@ target_link_libraries(main
   sudoku_utils
   ${Boost_LIBRARIES})
 
-# Build Python Bindings with -DBUILD_PYTHON
-if(BUILD_PYTHON)
+# Build Python Bindings with -DPYTHON_VERSION 3.x
+if(PYTHON_VERSION)
 
-  set(PYBIND11_PYTHON_VERSION 3.6)
+  set(PYBIND11_PYTHON_VERSION ${PYTHON_VERSION})
+  message("Generating python${PYTHON_VERSION} module")
   find_package(pybind11 REQUIRED)
 
   pybind11_add_module(sudoku_solver_py src/sudoku_solver_py.cpp)
@@ -57,11 +58,15 @@ if(BUILD_PYTHON)
   
   file(COPY scripts/interface_test.py
     DESTINATION .)
-
+else()
+  message("Skipping Python Bindings.")
 endif()
 
 # Build tests with catch2
 if (BUILD_TESTS)
+  message("Building unit tests.")
   enable_testing()
   add_subdirectory("test")
+else()
+  message("Skipping Tests.")
 endif()
