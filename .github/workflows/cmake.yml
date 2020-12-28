@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Create Build Folder
-      run: mkdir build
+      run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
       shell: bash
