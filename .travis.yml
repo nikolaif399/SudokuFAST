@@ -26,7 +26,6 @@ matrix:
       dist: xcode11.2
 
 env:
-  - BUILD_PYTHON=OFF
   global:
   - CI_SOURCE_PATH=$(pwd)
 
