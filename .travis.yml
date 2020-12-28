@@ -35,6 +35,5 @@ before_script:
   - mkdir build && cd build
 
 script:
-  - cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF
   - make -j4
-  - ctest -v
