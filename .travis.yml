@@ -17,7 +17,7 @@ addons:
     - boost
     update: false
 
-matrix:
+jobs:
   include:
     - os: linux
       dist: bionic
