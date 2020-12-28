@@ -30,7 +30,7 @@ C++ & Python bindings (replace 3.x in all places with your choice of python3 ver
 conda create -n your-env-name-here python=3.x
 conda activate your-env-name-here
 conda install numpy
-conda install -c conda-forge
+conda install -c conda-forge pybind11
 cmake .. -DPYTHON_VERSION=3.x
 make
 ```
