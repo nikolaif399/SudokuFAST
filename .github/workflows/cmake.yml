@@ -1,0 +1,35 @@
+name: CMake
+
+on: [push]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04,macos-11.0]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Create Build Folder
+      run: mkdir build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build
+      run: cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DBUILD_TESTS=1
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: make
+
+    - name: Test
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: ctest -v
