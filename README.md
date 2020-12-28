@@ -1,5 +1,5 @@
 # SudokuFAST
-Fast sudoku solver written in C++ with easy-to-use C++ and Python bindings. Uses [constraint optimization](https://developers.google.com/optimization/cp) and efficient storage of constraints for rapid solve times of Sudoku or SudokuX puzzles of any (square) size. Solves 9x9 sudoku puzzles rated "Diabolical" in 20-200 microseconds.
+SudokuFAST is a lightweight and efficient sudoku solver written in C++ with easy-to-use C++ and Python bindings. It uses [constraint optimization](https://developers.google.com/optimization/cp) and efficient storage of constraints for rapid solve times of Sudoku or SudokuX puzzles of any (square) size. Solves 9x9 sudoku puzzles rated "Diabolical" in 40-160 microseconds.
 
 Tested and verified on macOS Big Sur and Ubuntu 18.04 (should work with any unix OS).
 
