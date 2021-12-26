@@ -1,11 +1,19 @@
 cmake_minimum_required(VERSION 3.0.0)
 add_definitions(-std=c++17)
-
 set (PROJECT_VERSION "1.2")
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+  set(CMAKE_BUILD_TYPE RELEASE)
 endif()
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
 project(sudoku_solver
 VERSION ${PROJECT_VERSION}
@@ -14,7 +22,7 @@ DESCRIPTION "Sudoku Solver using constraint programming")
 # Build Sudoku Solver Library
 add_library(sudoku_solver
   SHARED
-  src/sudoku_solver.cpp)
+  src/sudoku_solver.cc)
 target_include_directories(sudoku_solver
   PUBLIC
   include)
@@ -25,7 +33,7 @@ set_target_properties(sudoku_solver
 # Build Sudoku Utils Library
 add_library(sudoku_utils
   SHARED
-  src/sudoku_utils.cpp)
+  src/sudoku_utils.cc)
 target_include_directories(sudoku_utils
   PUBLIC
   include)
@@ -35,7 +43,7 @@ set_target_properties(sudoku_solver
 
 # Build C++ Executable
 find_package( Boost REQUIRED COMPONENTS filesystem program_options)
-add_executable(main src/main.cpp)
+add_executable(main src/main.cc)
 target_include_directories(main
   PUBLIC
   include
@@ -52,7 +60,7 @@ if(PYTHON_VERSION)
   message("Generating python${PYTHON_VERSION} module")
   find_package(pybind11 REQUIRED)
 
-  pybind11_add_module(sudoku_solver_py src/sudoku_solver_py.cpp)
+  pybind11_add_module(sudoku_solver_py src/sudoku_solver_py.cc)
   target_include_directories(sudoku_solver_py PUBLIC include)
   target_link_libraries(sudoku_solver_py PUBLIC sudoku_solver sudoku_utils)
   
@@ -66,7 +74,20 @@ endif()
 if (BUILD_TESTS)
   message("Building unit tests.")
   enable_testing()
-  add_subdirectory("test")
+
+  add_executable(
+    sudoku_test
+    test/sudoku_test.cc
+  )
+  target_link_libraries(
+    sudoku_test
+    sudoku_solver
+    sudoku_utils
+    gtest_main
+  )
+
+  include(GoogleTest)
+  gtest_discover_tests(sudoku_test)
 else()
   message("Skipping Tests.")
 endif()
