@@ -89,7 +89,7 @@ int main(int argc,char** argv) {
   else {
     std::cout << BOLD(FGRN("Puzzle solved.")) << std::endl;
     duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
-    std::cout << "Solve time: " << time_span.count()*1000 << " ms" << std::endl;
+    std::cout << "Solve time: " << time_span.count()*1e6 << " us" << std::endl;
     std::cout << std::endl;
     board_t solved_board = solver.get_board();
     print_board(solved_board);

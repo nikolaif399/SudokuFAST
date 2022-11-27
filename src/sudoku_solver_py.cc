@@ -73,7 +73,7 @@ std::tuple<py::array,bool> py_solve_sudoku(py::array_t<int> arr, bool sudokuX)
   board_t output_board;
   if (success) {
     std::cout << BOLD(FGRN("Puzzle solved!")) << std::endl;
-    std::cout << "Solve time: " << time_span.count()*1000 << " ms" << std::endl;
+    std::cout << "Solve time: " << time_span.count()*1e6 << " us" << std::endl;
     output_board = solver.get_board();
   }
   else {

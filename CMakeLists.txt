@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.11.1)
 add_definitions(-std=c++17)
 set (PROJECT_VERSION "1.2")
 
@@ -70,7 +70,7 @@ else()
   message("Skipping Python Bindings.")
 endif()
 
-# Build tests with catch2
+# Build tests with google test
 if (BUILD_TESTS)
   message("Building unit tests.")
   enable_testing()

@@ -6,7 +6,7 @@ Tested and verified on macOS Big Sur and Ubuntu 18.04 (should work with any unix
 ## Dependencies
 1. [CMake](https://cmake.org/) - Build system
 2. [Boost](https://www.boost.org/doc/libs/1_66_0/more/getting_started/unix-variants.html) - Needed for running C++ executables
-3. [Catch2](https://github.com/catchorg/Catch2) - Needed if building tests
+3. GoogleTest - Needed if building tests. Automatically installed with repo.
 
 ### Python - Specific Dependencies (if building python bindings)
 1. [Miniconda3](https://docs.conda.io/en/latest/miniconda.html) - Manage python versions and dependencies
