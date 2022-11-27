@@ -71,23 +71,19 @@ else()
 endif()
 
 # Build tests with google test
-if (BUILD_TESTS)
-  message("Building unit tests.")
-  enable_testing()
+message("Building unit tests.")
+enable_testing()
 
-  add_executable(
-    sudoku_test
-    test/sudoku_test.cc
-  )
-  target_link_libraries(
-    sudoku_test
-    sudoku_solver
-    sudoku_utils
-    gtest_main
-  )
+add_executable(
+  sudoku_test
+  test/sudoku_test.cc
+)
+target_link_libraries(
+  sudoku_test
+  sudoku_solver
+  sudoku_utils
+  gtest_main
+)
 
-  include(GoogleTest)
-  gtest_discover_tests(sudoku_test)
-else()
-  message("Skipping Tests.")
-endif()
+include(GoogleTest)
+gtest_discover_tests(sudoku_test)

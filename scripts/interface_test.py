@@ -28,5 +28,4 @@ input_board = np.loadtxt("../resources/sudoku9xa.txt")
 
 print(input_board)
 [output_board,puzzle_solved] = solve_sudoku(input_board,True)
-
 print(output_board)
