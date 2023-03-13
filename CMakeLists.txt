@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11.1)
+cmake_minimum_required(VERSION 3.12)
 add_definitions(-std=c++17)
 set (PROJECT_VERSION "1.2")
 
@@ -26,6 +26,7 @@ add_library(sudoku_solver
 target_include_directories(sudoku_solver
   PUBLIC
   include)
+target_compile_definitions(sudoku_solver PUBLIC -DNDEBUG)
 set_target_properties(sudoku_solver
   PROPERTIES
   VERSION ${PROJECT_VERSION})
