@@ -24,20 +24,11 @@ C++ Bindings only:
 ```bash
 cmake ..
 make
+ctest -v
 ```
 C++ & Python bindings (replace 3.x in all places with your choice of python3 version):
 ```bash
-conda create -n your-env-name-here python=3.x
-conda activate your-env-name-here
-conda install numpy
-conda install -c conda-forge pybind11
+conda env create -f environment.yml
 cmake .. -DPYTHON_VERSION=3.x
 make
-```
-
-To build unit tests (requires Catch2 test framework):
-```bash
-cmake .. -DBUILD_TESTS=1
-make
-ctest -v
 ```

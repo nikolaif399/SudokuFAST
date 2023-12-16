@@ -1,0 +1,5 @@
+name: SudokuFAST
+dependencies:
+  - python=3.12.0
+  - numpy
+  - conda-forge::pybind11
